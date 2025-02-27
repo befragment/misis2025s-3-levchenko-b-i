@@ -41,31 +41,17 @@ std::string strid_from_mat(const cv::Mat& img, const int n) {
 
 std::vector<std::filesystem::path> get_list_of_file_paths(const std::filesystem::path& path_lst) {
     namespace fs = std::filesystem;
-    std::vector<std::filesystem::path> list_of_file_paths;
-    std::vector<std::string> list_of_file_names;
+    std::ifstream file(path_lst.string());
 
-	if (fs::exists(path_lst) && fs::is_directory(path_lst)) {
-        std::string s; 
-        std::ifstream file(path_lst.string() + "\\task01.lst");
-        
-        while (std::getline(file, s)) {
-            list_of_file_names.push_back(s);
+    std::vector<fs::path> file_paths;
+    std::array<std::string, 3> extensions = {".tiff", ".png", ".jpg"};
+    std::string s;
+    while (std::getline(file, s)) {
+        for (const auto& extension: extensions) {
+            file_paths.push_back(fs::path(s + extension));
         }
-
-        file.close();
-
-        for (const auto& entry : fs::directory_iterator(path_lst)) {
-            if (std::find(
-                    list_of_file_names.begin(), list_of_file_names.end(), entry.path().stem()
-                ) != list_of_file_names.end()) {
-                list_of_file_paths.push_back(entry.path());
-            } 
-        }
-	} else {
-        std::cerr << "Can't open file or directory. " <<
-            "Path '" << path_lst << "' is not coorect!" << std::endl;
     }
+    file.close();
 
-    return list_of_file_paths.empty() ? std::vector<fs::path>{} : list_of_file_paths;
+    return file_paths.empty() ? std::vector<fs::path>{} : file_paths;
 }
-
