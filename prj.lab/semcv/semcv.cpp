@@ -41,8 +41,11 @@ std::string strid_from_mat(const cv::Mat& img, const int n) {
 
 std::vector<std::filesystem::path> get_list_of_file_paths(const std::filesystem::path& path_lst) {
     namespace fs = std::filesystem;
-    std::ifstream file(path_lst.string());
+    if (!fs::exists(path_lst)) {
+        std::cerr << "No .lst file found :( ";
+    }
 
+    std::ifstream file(path_lst.string());
     std::vector<fs::path> file_paths;
     std::array<std::string, 3> extensions = {".tiff", ".png", ".jpg"};
     std::string s;
@@ -52,6 +55,5 @@ std::vector<std::filesystem::path> get_list_of_file_paths(const std::filesystem:
         }
     }
     file.close();
-
-    return file_paths.empty() ? std::vector<fs::path>{} : file_paths;
+    return file_paths;
 }
