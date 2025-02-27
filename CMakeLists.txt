@@ -13,6 +13,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO bin.relwithdbg)
 
 find_package(OpenCV CONFIG REQUIRED)
 
-add_subdirectory(semcv)
-add_executable(main main.cpp)
-target_link_libraries(main PRIVATE semcv ${OpenCV_LIBS})
+include_directories(prj.lab)
+
+add_subdirectory(prj.lab)
