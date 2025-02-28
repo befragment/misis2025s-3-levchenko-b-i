@@ -4,10 +4,11 @@
 #include <algorithm>
 #include <fstream>
 #include <filesystem>
-#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
 #include "semcv.hpp"
 
 using namespace cv;
+
 
 std::string getMatTypeString(int type) {
     switch (type) {

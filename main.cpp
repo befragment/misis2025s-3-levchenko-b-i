@@ -1,4 +1,11 @@
 #include <iostream>
-#include <opencv2/core.hpp>
+#include <filesystem>
+#include <fstream>
+#include <opencv2/opencv.hpp>
+#include "prj.lab/semcv/semcv.hpp"
 
-int main(int argc, const char** argv) {return 0;}
+namespace fs = std::filesystem;
+
+int main() {
+    return 0;
+}
