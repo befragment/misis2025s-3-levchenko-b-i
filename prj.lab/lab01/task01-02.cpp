@@ -41,7 +41,7 @@ cv::Mat apply_gamma_correction(const cv::Mat& img, double gamma) {
 int main(int argc, const char** argv) {
     std::vector<cv::Mat> images;
 
-    for (float gamma = 1.8; gamma <= 2.6; gamma += 0.2) {
+    for (float gamma = 1.8; gamma <= 2.6 + 0.1; gamma += 0.2) {
         cv::Mat generated = generate_1c_8bpp_image();
         cv::Mat res = apply_gamma_correction(generated, gamma);
         images.push_back(res);
