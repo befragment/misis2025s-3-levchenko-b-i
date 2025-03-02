@@ -28,7 +28,6 @@ void gen_data(const fs::path& filepath) {
 
     std::vector<int> channelsList = { 1, 3, 4 };
     std::vector<std::string> imgFormats = { "png", "tiff", "jpg" };
-    std::cout << "lst filepath " << filepath;
     std::ofstream lst_file(filepath);
 
     for (const auto& dtype : dtypes) {
@@ -58,7 +57,6 @@ std::string check_image(const fs::path& image_path) {
     }
 
     const std::string actual = strid_from_mat(image);
-    std::cout << image_path << ' ' << actual << ' ' << image_path << std::endl;
 
     const std::regex pattern(R"((\d{4}x\d{4}\.\d+\.\w+))");
     std::smatch match;

@@ -67,8 +67,6 @@ cv::Mat gen_tgtimg00(const int lev0, const int lev1, const int lev2) {
         INNER_SQ_PIXELS, INNER_SQ_PIXELS
     );
 
-    std::cout << INNER_SQ_PIXELS - inner_rect_coords_x + 1 << ' ' 
-    << INNER_SQ_PIXELS - inner_rect_coords_y + 1 << std::endl;
     cv::Point center(res.rows / 2, res.cols / 2);
     cv::rectangle(res, rect, lev1, -1);
     cv::circle(res, center, CIRCLE_RADIUS, cv::Scalar(lev2), -1);
