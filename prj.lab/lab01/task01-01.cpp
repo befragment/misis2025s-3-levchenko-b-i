@@ -28,7 +28,7 @@ void gen_data(const fs::path& filepath) {
 
     std::vector<int> channelsList = { 1, 3, 4 };
     std::vector<std::string> imgFormats = { "png", "tiff", "jpg" };
-    std::cout << "lst filepath "<<filepath;
+    std::cout << "lst filepath " << filepath;
     std::ofstream lst_file(filepath);
 
     for (const auto& dtype : dtypes) {
