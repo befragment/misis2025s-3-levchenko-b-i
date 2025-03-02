@@ -56,3 +56,29 @@ std::vector<std::filesystem::path> get_list_of_file_paths(const std::filesystem:
     file.close();
     return file_paths;
 }
+
+cv::Mat gen_tgtimg00(const int lev0, const int lev1, const int lev2) {
+    cv::Mat res(OUTER_SQ_PIXELS, OUTER_SQ_PIXELS, CV_8UC1, cv::Scalar(lev0));
+
+    int inner_rect_coords_y = (OUTER_SQ_PIXELS - INNER_SQ_PIXELS) / 2;
+    int inner_rect_coords_x = inner_rect_coords_y;
+    cv::Rect rect(
+        inner_rect_coords_x, inner_rect_coords_y, 
+        INNER_SQ_PIXELS, INNER_SQ_PIXELS
+    );
+
+    std::cout << INNER_SQ_PIXELS - inner_rect_coords_x + 1 << ' ' 
+    << INNER_SQ_PIXELS - inner_rect_coords_y + 1 << std::endl;
+    cv::Point center(res.rows / 2, res.cols / 2);
+    cv::rectangle(res, rect, lev1, -1);
+    cv::circle(res, center, CIRCLE_RADIUS, cv::Scalar(lev2), -1);
+    return res;
+}
+
+cv::Mat add_noise_gau(const cv::Mat& img, const int std, const int mean) {
+    cv::Mat res;
+    cv::Mat noise(img.size(), img.type());
+    cv::randn(noise, mean, std);
+    cv::add(img, noise, res);
+    return res; 
+}

@@ -15,7 +15,6 @@ cv::Mat generate_1c_8bpp_image(int width = 768, int height = 30, int stripe_widt
         throw std::runtime_error("Failed to create image");
     }
 
-
     for (int i = 0; i < stripes_count; i++) {
         cv::Rect stripe(stripe_width * i, 0, stripe_width, height);
         img(stripe).setTo(i);
@@ -49,10 +48,6 @@ int main(int argc, const char** argv) {
 
     cv::Mat collage;
     cv::vconcat(images, collage);
-
-    cv::imwrite("collage.png", collage);
-    cv::imshow("Gamma Collage", collage);
-    cv::waitKey(0);
-
+    cv::imwrite(RESULTS_DIR / "res01-02.png", collage);
     return 0;
 }

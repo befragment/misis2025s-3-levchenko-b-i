@@ -33,7 +33,7 @@ void gen_data(const fs::path& filepath) {
 
     for (const auto& dtype : dtypes) {
         for (int channels : channelsList) {
-            std::string file_data = BASE_DIR.string() + "/images" + '/' + "0256x0256." + std::to_string(channels) + "." + dtype.name;
+            std::string file_data = BASE_DIR.string() + "/prj.lab/lab01/images" + "/0256x0256." + std::to_string(channels) + "." + dtype.name;
             lst_file << file_data << '\n';
             for (const auto& imgFormat : imgFormats) {
                 cv::Mat image(height, width, CV_MAKETYPE(dtype.cvType, channels), cv::Scalar(0));
@@ -46,7 +46,7 @@ void gen_data(const fs::path& filepath) {
         }
     }
     lst_file.close();
-    std::cout << "Все изображения успешно созданы и сохранены." << std::endl;
+    std::cout << "All images were created and saved to /images/ directory" << std::endl;
 }
 
 std::string check_image(const fs::path& image_path) {
@@ -80,7 +80,7 @@ std::string check_image(const fs::path& image_path) {
 } 
 
 int main(int argc, const char** argv) {
-    const fs::path img_dir = BASE_DIR / "images";
+    const fs::path img_dir = BASE_DIR / "prj.lab" / "lab01" / "images";
     try {
         if (!fs::exists(img_dir)) {
             if (fs::create_directory(img_dir)) {
