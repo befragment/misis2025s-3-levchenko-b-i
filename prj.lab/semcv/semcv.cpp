@@ -80,3 +80,10 @@ cv::Mat add_noise_gau(const cv::Mat& img, const int std, const int mean) {
     cv::add(img, noise, res);
     return res; 
 }
+
+fs::path resolve_result_dir(const char* path_name, std::string filename) {
+    fs::path path = fs::path(path_name);
+    fs::path closest_parent_path = path.parent_path().filename();
+    fs::path save_path = BASE_DIR / "results" / closest_parent_path / fs::path(filename);
+    return save_path;
+}

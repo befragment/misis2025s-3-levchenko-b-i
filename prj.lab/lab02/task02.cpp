@@ -32,6 +32,7 @@ int main(int argc, const char** argv) {
     }
     cv::vconcat(collage_of_rows, res_collage);
 
-    cv::imwrite(RESULTS_DIR / "res02.png", res_collage);
+    fs::path save_path = resolve_result_dir(__FILE__, "res02.png");
+    cv::imwrite(save_path, res_collage);
     return 0;
 }

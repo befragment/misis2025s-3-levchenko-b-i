@@ -38,6 +38,7 @@ cv::Mat apply_gamma_correction(const cv::Mat& img, double gamma) {
 
 
 int main(int argc, const char** argv) {
+    namespace fs = std::filesystem;
     std::vector<cv::Mat> images;
 
     for (float gamma = 1.8; gamma <= 2.6 + 0.1; gamma += 0.2) {
@@ -48,6 +49,8 @@ int main(int argc, const char** argv) {
 
     cv::Mat collage;
     cv::vconcat(images, collage);
-    cv::imwrite(RESULTS_DIR / "res01-02.png", collage);
+
+    fs::path save_path = resolve_result_dir(__FILE__, "res01-02.png");
+    cv::imwrite(save_path, collage);
     return 0;
 }
