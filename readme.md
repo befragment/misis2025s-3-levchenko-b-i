@@ -1,2 +1,2 @@
-## image processing course repositpry
+## image processing course repository
 
