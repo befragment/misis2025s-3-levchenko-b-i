@@ -20,7 +20,7 @@ add_definitions(-DPRJ_RESULTS_DIR="${RESULTS_DIR}")
 # create children directories with results for each lab
 file(GLOB children RELATIVE "${CMAKE_CURRENT_SOURCE_DIR}/prj.lab" "${CMAKE_CURRENT_SOURCE_DIR}/prj.lab/*")
 foreach(child ${children})
-    if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/prj.lab/${child}" AND child MATCHES "^lab[0-9][0-9]$" )
+    if(IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/prj.lab/${child}" AND child MATCHES "^lab[0-9][0-9]$")
         file(MAKE_DIRECTORY "${CMAKE_SOURCE_DIR}/results/${child}")
     endif()
 endforeach()
