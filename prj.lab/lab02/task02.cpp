@@ -19,18 +19,18 @@ int main(int argc, const char** argv) {
 
     cv::Mat res_collage;
     std::vector<cv::Mat> collage_of_rows;
-    for (const auto& std : stds) {
+    for (const auto& [back, inner, circle] : brightnesses) {
         std::vector<cv::Mat> collage_rowmats;
         cv::Mat current_row_mat;
-        for (const auto& [back, inner, circle] : brightnesses) {
+        for (const auto& std : stds) {
             cv::Mat img = gen_tgtimg00(back, inner, circle);
             cv::Mat noise_img = add_noise_gau(img, std);
             collage_rowmats.push_back(noise_img);
         }
-        cv::hconcat(collage_rowmats, current_row_mat);
+        cv::vconcat(collage_rowmats, current_row_mat);
         collage_of_rows.push_back(current_row_mat);
     }
-    cv::vconcat(collage_of_rows, res_collage);
+    cv::hconcat(collage_of_rows, res_collage);
 
     fs::path save_path = resolve_result_dir(__FILE__, "res02.png");
     cv::imwrite(save_path, res_collage);
